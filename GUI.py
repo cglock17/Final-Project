@@ -1,5 +1,5 @@
-###def add_task():
-   ##### task = task_entry.get()
+def add_task():
+   task = task_entry.get()
 
 
 
