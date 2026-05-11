@@ -1,5 +1,12 @@
+tasks = []
+
+
 def add_task():
-   task = task_entry.get()
+    task = task_entry.get()
+    if task != "":
+        tasks.append(task)
+    else:
+        print("No task entered")
 
 
 
@@ -8,11 +15,17 @@ def add_task():
 
 import tkinter as tk
 
+
+
+
+
+
+
 root = tk.Tk()
 root.title("Task Manager")
 root.geometry("400x500")
 root.configure(bg="#f0f0f0")
-
+add_button = tk.Button(root, text="Add", command=add_task)
 # Title
 title_label = tk.Label(
     root,
@@ -33,11 +46,14 @@ task_entry = tk.Entry(
 )
 task_entry.pack(side=tk.LEFT, padx=5)
 
-add_button = tk.Button(
-    input_frame,
-    text="Add",
-    width=10
-)
+
+add_button = tk.Button(input_frame, text="Add", width= 10, command=add_task)
+
+add_button.pack(side=tk.LEFT)
+
+
+
+
 add_button.pack(side=tk.LEFT)
 
 # Listbox (task display)
