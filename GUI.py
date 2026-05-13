@@ -6,6 +6,7 @@ def add_task():
     if task != "":
         tasks.append(task)
         task_listbox.insert(tk.END, task)
+        task_entry.delete(0, tk.END)
     else:
         print("No task entered")
 
