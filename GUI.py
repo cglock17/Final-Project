@@ -1,5 +1,5 @@
 tasks = []
-
+import tkinter as tk
 
 def add_task():
     task = task_entry.get()
@@ -10,12 +10,22 @@ def add_task():
     else:
         print("No task entered")
 
+def complete_task():
+    selected = task_listbox.curselection()
+
+    if selected:
+        index = selected[0]
+
+        task = "✔" + tasks[index]
+        task_listbox.delete(index)
+        task_listbox.insert(index, task)
 
 
 
 
 
-import tkinter as tk
+
+
 
 
 
@@ -51,7 +61,6 @@ task_entry.pack(side=tk.LEFT, padx=5)
 
 add_button = tk.Button(input_frame, text="Add", width= 10, command=add_task)
 
-add_button.pack(side=tk.LEFT)
 
 
 
@@ -74,7 +83,8 @@ button_frame.pack(pady=10)
 complete_button = tk.Button(
     button_frame,
     text="Complete",
-    width=12
+    width=12,
+    command=complete_task
 )
 complete_button.pack(side=tk.LEFT, padx=5)
 
