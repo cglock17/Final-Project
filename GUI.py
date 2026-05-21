@@ -21,8 +21,13 @@ def complete_task():
         task_listbox.insert(index, task)
 
 
+def delete_task():
+    selected = task_listbox.curselection()
+    if selected:
+        index = selected[0]
 
-
+    task_listbox.delete(index)
+    tasks.pop(index)
 
 
 
@@ -91,7 +96,8 @@ complete_button.pack(side=tk.LEFT, padx=5)
 delete_button = tk.Button(
     button_frame,
     text="Delete",
-    width=12
+    width=12,
+    command=delete_task
 )
 delete_button.pack(side=tk.LEFT, padx=5)
 
