@@ -1,4 +1,5 @@
 tasks = []
+import json
 import tkinter as tk
 
 def add_task():
@@ -7,6 +8,7 @@ def add_task():
         tasks.append(task)
         task_listbox.insert(tk.END, task)
         task_entry.delete(0, tk.END)
+        save_tasks()
     else:
         print("No task entered")
 
@@ -19,6 +21,7 @@ def complete_task():
         task = "✔" + tasks[index]
         task_listbox.delete(index)
         task_listbox.insert(index, task)
+        save_tasks()
 
 
 def delete_task():
@@ -28,14 +31,26 @@ def delete_task():
 
     task_listbox.delete(index)
     tasks.pop(index)
+    save_tasks()
+
+def save_tasks():
+    with open("tasks.json", "w") as file:
+        json.dump(tasks, file)
 
 
 
+def load_tasks():
+    try:
+     with open("tasks.json", "r") as file:
+        loaded_tasks = json.load(file)
 
+        for task in loaded_tasks:
+            tasks.append(task)
+            task_listbox.insert(tk.END, task)
+    except:
+        pass
 
-
-
-
+load_tasks()
 
 
 root = tk.Tk()
